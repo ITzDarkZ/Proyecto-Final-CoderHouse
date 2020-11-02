@@ -28,7 +28,7 @@ class Carrito{
     agregar_compra(producto, cantidad){
         if (producto.renovar_cantidad(cantidad)){
             this.compras.push(producto);
-            return 1;
+            return true;
         } else {
             return false;
         }
