@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Alejo Sequione | Novus Élite</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top bg-secondary">
+        <div class="container"><img id="logo" src="assets/img/logo.jpg"><a class="navbar-brand" href="#"><strong>Novus Élite</strong><br></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="tienda.html">Tienda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto" data-scroll="">Contactanos</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <div id="tienda">
+        <div class="jumbotron">
+            <h1>Novus Élite</h1>
+            <p>Somos la nueva marca de ropa que cambiara completamente tu estilo de vida brindándote la mejor calidad de prendas a un mejor precio.<br>Tenemos unas ofertas increíbles, no te las pierdas!</p>
+            <p><a class="btn btn-primary" role="button" data-scroll="" href="#ofertas">Ver ofertas</a></p>
+        </div>
+    </div>
+    <div class="container site-section" id="welcome" data-scroll="">
+        <h1>Bienvenido a&nbsp;Novus Élite</h1>
+        <p>Novus Élite es una tienda de ropa nueva. Creada con el fin de brindar a nuestros compradores con prendas de buena calidad a un mejor precio.</p>
+    </div>
+    <div class="dark-section">
+        <div class="container site-section" id="why">
+            <h1>Porque elegirnos</h1>
+            <div class="row">
+                <div class="col item"><i class="fas fa-star"></i>
+                    <h2>Excelente calidad</h2>
+                    <p>Nuestras prendas están totalmente diseñadas y hechas con la mejor calidad existente en el mercado</p>
+                </div>
+                <div class="col item"><i class="fas fa-money-bill"></i>
+                    <h2>Precios accesibles</h2>
+                    <p>Nuestros precios son los mas accesibles hoy en día en el mercado y brindamos la mejor calidad-precio en prendas de ropa</p>
+                </div>
+                <div class="col item"><i class="fas fa-hands-helping"></i>
+                    <h2>EXCELENTE atención</h2>
+                    <p>Nuestros ayudantes están completamente capacitados para brindar una buena atención en todo momento</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ofertas" class="tienda-ropa" data-scroll="">
+        <div class="container site-section">
+            <h1><strong>Ofertas de Novus Élite</strong></h1>
+        </div>
+        <div class="container site-section">
+            <div class="row">
+                <div class="col">
+                    <div class="card"><a href="assets/img/adidas1.jpg" target="_blank" data-lightbox="ropa"><img class="img-fluid" src="assets/img/adidas1.jpg"></a>
+                        <div class="card-body"><i class="fa fa-tag"></i>
+                            <h4 class="card-title">Remera Adidas original vocal logo</h4>
+                            <p class="card-text"><span style="text-decoration: line-through;">$5000</span>&nbsp;$3499.99</p><button class="btn btn-primary" type="button" onclick="agregarCarrito()">Agregar al carrito</button></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card"><a href="assets/img/nike1.jpg" target="_blank" data-lightbox="ropa"><img class="img-fluid" src="assets/img/nike1.jpg"></a>
+                        <div class="card-body"><i class="fa fa-tag"></i>
+                            <h4 class="card-title">Remera nike sportswear</h4>
+                            <p class="card-text">&nbsp;<span style="text-decoration: line-through;">$4000</span>&nbsp;$2499.99</p><button class="btn btn-primary" type="button" onclick="agregarCarrito()">Agregar al carrito</button></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card"><a href="assets/img/adidas2.jpg" target="_blank" data-lightbox="ropa"><img class="img-fluid" src="assets/img/adidas2.jpg"></a>
+                        <div class="card-body"><i class="fa fa-tag"></i>
+                            <h4 class="card-title">Remera adidas Originals Trefoil</h4>
+                            <p class="card-text"><span style="text-decoration: line-through;">$4990</span>&nbsp;$3399.99</p><button class="btn btn-primary" type="button" onclick="agregarCarrito()">Agregar al carrito</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contacto" class="contact-clean" data-scroll="">
+        <form method="post">
+            <h2 class="text-center">Contactanos</h2>
+            <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Nombre"></div>
+            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+            <div class="form-group"><textarea class="form-control" name="message" placeholder="Mensaje" rows="14"></textarea></div>
+            <div class="form-group"><button class="btn btn-primary" type="submit">Enviar</button></div>
+        </form>
+    </div>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com/alejosequione/" target="_blank"><i class="icon ion-social-instagram"></i></a><a href="https://twitter.com/alejosequione" target="_blank"><i class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com/AlejoSequione/"
+                    target="_blank"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Inicio</a></li>
+                <li class="list-inline-item"><a href="tienda.html" data-scroll="">Tienda</a></li>
+                <li class="list-inline-item"><a href="#contacto" data-scroll="">Contacto</a></li>
+            </ul>
+            <p class="copyright">Novus Élite © 2020</p>
+        </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/clases.js"></script>
+    <script src="assets/js/funciones.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="assets/js/main-script.js"></script>
+    <script src="assets/js/scroll.js"></script>
+    <script src="assets/js/select-script.js"></script>
+</body>
+
+</html>
