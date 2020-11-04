@@ -8,19 +8,28 @@ function agregarCarrito(){
                 type: "number",
                 min: "1",
                 onkeypress(event){
-                    event.preventDefault();
-                    const div = document.getElementsByClassName('swal-content');
-                    let p = document.createElement('p');
-                    p.setAttribute("id", "error-flecha");
-                    if(document.getElementById('error-flecha') === null){
-                        p.innerHTML = "Ingrese un numero con las flechas por favor";
-                        div[0].appendChild(p);
+                    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                        event.preventDefault();
+                        const div = document.getElementsByClassName('swal-content');
+                        let p = document.createElement('p');
+                        p.setAttribute("id", "error-flecha");
+                        if(document.getElementById('error-flecha') === null){
+                            p.innerHTML = "Ingrese un numero con las flechas por favor";
+                            div[0].appendChild(p);
+                        }
                     }
                 },
             },
         },
     }).then((value) => {
-        if(typeof value === typeof '' && value !== ''){
+        var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+        var mostrar = true
+        for(letra of value){
+            if (letra.match(format)){
+                mostrar = false;
+            }
+        }
+        if (typeof value === typeof '' && value !== '' && mostrar) {
             swal({
                 title: "Estas seguro?",
                 text: `Quieres agregar ${value} unidades al carrito?`,
@@ -54,7 +63,7 @@ function agregarCarrito(){
                     swal("Se cancelo correctamente!");
                 }
               });
-        } else if (value === '') {
+        } else if (value === '' || !mostrar) {
             swal({
                 title: "Error!",
                 text: "Se ingreso una cantidad invalida...",
