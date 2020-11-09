@@ -131,7 +131,7 @@ function mostrarProductoCarrito(producto) {
                 <div class="product">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-md-3 carro-completo">
-                            <div class="product-image"><a href="${producto.imagen}" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="${producto.imagen}"></a></div>
+                            <div class="product-image"><a href="assets/img/${producto.imagen}" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/${producto.imagen}"></a></div>
                         </div>
                     <div class="col-md-5 product-info">
                         <h6><strong>${producto.nombre}</strong></h6>
