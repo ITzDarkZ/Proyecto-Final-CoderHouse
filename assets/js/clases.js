@@ -1,5 +1,6 @@
 class Producto {
-    constructor(nombre, precio, stock, cant_pedida, imagen, talle){
+    constructor(id, nombre, precio, stock, cant_pedida, imagen, talle){
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
@@ -15,7 +16,7 @@ class Carrito{
         if (infoCarrito){
             this.carrito = JSON.parse(infoCarrito);
             this.carrito = this.carrito.map(element => {
-                return new Producto(element.nombre, element.precio, element.stock, element.cant_pedida, element.imagen);
+                return new Producto(element.id, element.nombre, element.precio, element.stock, element.cant_pedida, element.imagen, element.talle);
             });
         } else {
             this.carrito = [];
@@ -24,7 +25,7 @@ class Carrito{
     agregarCompra(producto, cantidad=1){
         if (this.carrito.length > 0){
             const encontro = this.carrito.find(element => {
-                return producto.nombre === element.nombre;
+                return producto.id === element.id;
             });
             if (encontro === undefined){
                 producto.cant_pedida = cantidad;
@@ -45,8 +46,8 @@ class Carrito{
         }
     }
     removerCompra(producto){
-        this.carrito = this.carrito.map(element => {
-            return element.nombre !== producto.nombre;
+        this.carrito = this.carrito.filter(element => {
+            return element.id !== producto.id;
         });
         localStorage.setItem('Carrito', JSON.stringify(this.carrito));
     }

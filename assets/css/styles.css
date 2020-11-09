@@ -176,8 +176,8 @@ body {
 .custom-select {
   position: relative;
   font-family: Arial;
-  max-width: 100px;
-  height: 45px;
+  max-width: 90px;
+  height: 40px;
 }
 
 .custom-select select {
@@ -251,5 +251,14 @@ body {
 .product-specs {
   padding: 10px 10px;
   font-size: 13px;
+}
+
+.btn.btn-primary.eliminar {
+  align-content: center;
+  padding-top: 15px;
+}
+
+.col-6.col-md-2.col-xl-2.quantity {
+  max-height: 70px;
 }
 

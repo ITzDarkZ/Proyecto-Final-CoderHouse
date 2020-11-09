@@ -57,20 +57,21 @@
 </select></div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-2 col-xl-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="number" class="form-control quantity-input" value="1" min="1"></div>
-                                <div class="col-6 col-md-2 price"><span>TOTAL</span></div>
-                            </div>
+                                <div class="col-6 col-md-2 col-xl-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="0" class="form-control quantity-input" value="1" min="1"><button class="btn btn-primary eliminar" type="button">Eliminar</button></div>
+                                <div
+                                    class="col-6 col-md-2 price"><span>TOTAL</span></div>
                         </div>
-                        <div class="product">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-md-3">
-                                    <div class="product-image"><a href="assets/img/nike1.jpg" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/nike1.jpg"></a></div>
-                                </div>
-                                <div class="col-md-5 product-info">
-                                    <h6><strong>Remera nike sportswear</strong></h6>
-                                    <div class="product-specs">
-                                        <div class="precio"><span>Precio unidad:&nbsp;</span><span class="value">PRECIO</span></div>
-                                        <div class="talle"><span>Talle:&nbsp;</span><select class="custom-select">
+                    </div>
+                    <div class="product">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-md-3">
+                                <div class="product-image"><a href="assets/img/nike1.jpg" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/nike1.jpg"></a></div>
+                            </div>
+                            <div class="col-md-5 product-info">
+                                <h6><strong>Remera nike sportswear</strong></h6>
+                                <div class="product-specs">
+                                    <div class="precio"><span>Precio unidad:&nbsp;</span><span class="value">PRECIO</span></div>
+                                    <div class="talle"><span>Talle:&nbsp;</span><select class="custom-select">
     <optgroup label="Talles">
         <option value="11" selected>XS</option>
         <option value="12">S</option>
@@ -79,22 +80,22 @@
         <option value="14">XL</option>
     </optgroup>
 </select></div>
-                                    </div>
                                 </div>
-                                <div class="col-6 col-md-2 col-xl-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="number" class="form-control quantity-input" value="1" min="1"></div>
-                                <div class="col-6 col-md-2 price"><span>TOTAL</span></div>
                             </div>
+                            <div class="col-6 col-md-2 col-xl-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="1" class="form-control quantity-input" value="1" min="1"></div>
+                            <div class="col-6 col-md-2 price"><span>TOTAL</span></div>
                         </div>
-                        <div class="product">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-md-3">
-                                    <div class="product-image"><a href="assets/img/adidas2.jpg" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/adidas2.jpg"></a></div>
-                                </div>
-                                <div class="col-md-5 product-info">
-                                    <h6><strong>Remera Adidas originals trefoil</strong></h6>
-                                    <div class="product-specs">
-                                        <div class="precio"><span>Precio unidad:&nbsp;</span><span class="value">PRECIO</span></div>
-                                        <div class="talle"><span>Talle:&nbsp;</span><select class="custom-select">
+                    </div>
+                    <div class="product">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-md-3">
+                                <div class="product-image"><a href="assets/img/adidas2.jpg" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/adidas2.jpg"></a></div>
+                            </div>
+                            <div class="col-md-5 product-info">
+                                <h6><strong>Remera Adidas originals trefoil</strong></h6>
+                                <div class="product-specs">
+                                    <div class="precio"><span>Precio unidad:&nbsp;</span><span class="value">PRECIO</span></div>
+                                    <div class="talle"><span>Talle:&nbsp;</span><select class="custom-select">
     <optgroup label="Talles">
         <option value="11" selected>XS</option>
         <option value="12">S</option>
@@ -103,23 +104,23 @@
         <option value="14">XL</option>
     </optgroup>
 </select></div>
-                                    </div>
                                 </div>
-                                <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="number" class="form-control quantity-input" value="1" min="1"></div>
-                                <div class="col-6 col-md-2 price"><span>TOTAL</span></div>
                             </div>
+                            <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="2" class="form-control quantity-input" value="1" min="1" onchange="actualizarCantidad(event)"></div>
+                            <div class="col-6 col-md-2 price"><span>TOTAL</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12 col-lg-4" id="summary">
-            <div class="summary">
-                <div id="formato" class="resumen">
-                    <h2 id="titulo">Resumen</h2>
-                    <h4><span class="text">Total&nbsp;</span><span class="price">$360</span></h4><button class="btn btn-primary btn-block btn-lg" id="pago" type="button">Completar el Pago</button></div>
-            </div>
+    </div>
+    <div class="col-md-12 col-lg-4" id="summary">
+        <div class="summary">
+            <div id="formato" class="resumen">
+                <h2 id="titulo">Resumen</h2>
+                <h4><span class="text">Total&nbsp;</span><span class="price">$360</span></h4><button class="btn btn-primary btn-block btn-lg" id="pago" type="button">Completar el Pago</button></div>
         </div>
+    </div>
     </div>
     <div class="footer-basic">
         <footer>
