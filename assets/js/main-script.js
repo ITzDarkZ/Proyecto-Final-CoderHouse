@@ -9,8 +9,36 @@ TODO
 6) Pagina "Tienda" completamente funcional con filtros por tipo de prenda, sexo, talle y precios (desde y hasta)
    Ejemplo: elegir prendas desde 0 a 1700 pesos, o desde 1800 a 4000 pesos
 */
+const carro = new Carrito();
+const productos = cargarProductos();
 
-const carrito = new Carrito();
+window.onload = function(){
+   const carritohtml = document.getElementById('carrito');
+   if(carritohtml !== null){
+      carritohtml.removeChild(document.getElementById('carrito_compras'));
+      carritohtml.removeChild(document.getElementById('carrito_vacio'));
+      const summary = document.getElementById('summary');
+      carritohtml.removeChild(summary);
+      if(carro.carrito.length > 0){
+         const titulo = document.createElement('div');
+         titulo.id = 'carrito_compras';
+         titulo.className = 'content';
+         titulo.innerHTML = tituloHTML();
+         carritohtml.appendChild(titulo);
+         const padre = document.getElementById('items');
+         carro.carrito.forEach(element => {
+            let plantilla = mostrarProductoCarrito(element);
+            padre.innerHTML += plantilla;
+         });
+         titulo.appendChild(padre);
+         summary.innerHTML = actualizarSummary(carro.carrito);
+         carritohtml.appendChild(summary)
+      } else {
+         tituloVacio = document.createElement('h1');
+         tituloVacio.id = "carrito_vacio";
+         tituloVacio.innerHTML = 'TU CARRITO DE COMPRAS ESTÁ VACIÓ VE A LA TIENDA A COMPRAR ALGO!';
+         carritohtml.appendChild(tituloVacio);
+      } 
+   }
+}
 
-let adidas1 = new Producto('Remera Adidas Original Vocal Logo', 3499.99, 30, 0, 'adidas1.jpg');
-let adidas2 = new Producto('REMERA NIKE SPORTSWEAR', 2499.99, 30, 0, 'nike1.jpg');

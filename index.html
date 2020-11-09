@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Alejo Sequione | Novus Élite</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -65,26 +65,26 @@
             <h1><strong>Ofertas de Novus Élite</strong></h1>
         </div>
         <div class="container site-section">
-            <div class="row">
+            <div class="row" id="main-card">
                 <div class="col">
                     <div class="card"><a href="assets/img/adidas1.jpg" target="_blank" data-lightbox="ropa"><img class="img-fluid" src="assets/img/adidas1.jpg"></a>
                         <div class="card-body"><i class="fa fa-tag"></i>
                             <h4 class="card-title">Remera Adidas original vocal logo</h4>
-                            <p class="card-text"><span style="text-decoration: line-through;">$5000</span>&nbsp;$3499.99</p><button class="btn btn-primary" type="button" onclick="agregarCarrito()">Agregar al carrito</button></div>
+                            <p class="card-text"><span style="text-decoration: line-through;">$5000</span>&nbsp;$3499.99</p><button class="btn btn-primary" id="0" type="button" onclick="agregarCarrito(event)">Agregar al carrito</button></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card"><a href="assets/img/nike1.jpg" target="_blank" data-lightbox="ropa"><img class="img-fluid" src="assets/img/nike1.jpg"></a>
                         <div class="card-body"><i class="fa fa-tag"></i>
                             <h4 class="card-title">Remera nike sportswear</h4>
-                            <p class="card-text">&nbsp;<span style="text-decoration: line-through;">$4000</span>&nbsp;$2499.99</p><button class="btn btn-primary" type="button" onclick="agregarCarrito()">Agregar al carrito</button></div>
+                            <p class="card-text">&nbsp;<span style="text-decoration: line-through;">$4000</span>&nbsp;$2499.99</p><button class="btn btn-primary" id="1" type="button" onclick="agregarCarrito(event)">Agregar al carrito</button></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card"><a href="assets/img/adidas2.jpg" target="_blank" data-lightbox="ropa"><img class="img-fluid" src="assets/img/adidas2.jpg"></a>
                         <div class="card-body"><i class="fa fa-tag"></i>
                             <h4 class="card-title">Remera adidas Originals Trefoil</h4>
-                            <p class="card-text"><span style="text-decoration: line-through;">$4990</span>&nbsp;$3399.99</p><button class="btn btn-primary" type="button" onclick="agregarCarrito()">Agregar al carrito</button></div>
+                            <p class="card-text"><span style="text-decoration: line-through;">$4990</span>&nbsp;$3399.99</p><button class="btn btn-primary" id="2" type="button" onclick="agregarCarrito(event)">Agregar al carrito</button></div>
                     </div>
                 </div>
             </div>
@@ -117,6 +117,7 @@
     <script src="assets/js/funciones.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/main-script.js"></script>
     <script src="assets/js/scroll.js"></script>

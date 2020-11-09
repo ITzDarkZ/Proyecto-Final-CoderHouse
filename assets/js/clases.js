@@ -1,67 +1,69 @@
 class Producto {
-    constructor(nombre, precio, stock, cantidad_solicitada, imagen){
+    constructor(nombre, precio, stock, cant_pedida, imagen, talle){
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
-        this.cantidad_solicitada = cantidad_solicitada;
         this.imagen = imagen;
-    }
-
-    comprar(){
-        this.stock -= this.cantidad_solicitada;
-        this.cantidad_solicitada = 0
-    }
-
-    renovar_cantidad(cantidad_solicitada){
-        if (cantidad_solicitada > this.stock){
-            return false;
-        } else {
-            this.cantidad_solicitada = cantidad_solicitada;
-            return true;
-        }
-        
+        this.cant_pedida = cant_pedida;
+        this.talle = talle;
     }
 }
 
 class Carrito{
-    compras = [];
-    agregar_compra(producto, cantidad){
-        if (producto.renovar_cantidad(cantidad)){
-            this.compras.push(producto);
-            return true;
-        } else {
-            return false;
-        }
-    }
-    finalizar_compra(){
-        this.compras.forEach(element => { // Hice un forEach porque me resulta mas facil manejarme con este ciclo que con el for
-            element.comprar();
-        });
-        this.compras = [];
-    }
-    mostrar(){
-        if(this.compras.length == 0){
-            console.log('El carrito esta vacio');
-        } else {
-            console.log('---------------INICIO------------------');
-            this.compras.forEach(element => {
-                console.log(element);
+    constructor(){
+        const infoCarrito = localStorage.getItem('Carrito');
+        if (infoCarrito){
+            this.carrito = JSON.parse(infoCarrito);
+            this.carrito = this.carrito.map(element => {
+                return new Producto(element.nombre, element.precio, element.stock, element.cant_pedida, element.imagen);
             });
-            console.log('----------------FIN--------------------');
+        } else {
+            this.carrito = [];
         }
     }
-    remover_compra(compra){
-        this.compras = this.compras.filter(function(value){
-            return value !== compra;
-        });
-    }
-
-    encontrar_compra(producto){
-        for (let i = 0; i < this.compras.length; i++){
-            if (this.compras[i].nombre === producto.nombre){
-                return i;
+    agregarCompra(producto, cantidad=1){
+        if (this.carrito.length > 0){
+            const encontro = this.carrito.find(element => {
+                return producto.nombre === element.nombre;
+            });
+            if (encontro === undefined){
+                producto.cant_pedida = cantidad;
+                this.carrito.push(producto);
+                localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+            } else {
+                this.carrito.find(element => {
+                    if (element.nombre === encontro.nombre){
+                        element.cant_pedida += cantidad;
+                    };
+                });
+                localStorage.setItem('Carrito', JSON.stringify(this.carrito));
             }
+        } else {
+            producto.cant_pedida = cantidad;
+            this.carrito.push(producto);
+            localStorage.setItem('Carrito', JSON.stringify(this.carrito));
         }
-        return false;
+    }
+    removerCompra(producto){
+        this.carrito = this.carrito.map(element => {
+            return element.nombre !== producto.nombre;
+        });
+        localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+    }
+    mostrarCarrito(){
+        if(this.carrito.length > 0){
+            console.log('Productos en el carrito: \n');
+            this.carrito.forEach(element => {
+                console.log(' Nombre: ', element.nombre, '\n', 'Precio: ', element.precio, '\n', 'Cantidad: ', element.cant_pedida);
+            });
+            console.log('----------------------------------------------');
+        } else {
+            console.log('El carrito esta vacio');
+        }
+        
+    }
+    vaciarCarrito(){
+        this.carrito = []
+        localStorage.setItem('Carrito', JSON.stringify(this.carrito));
     }
 }
