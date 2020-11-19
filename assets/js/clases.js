@@ -8,6 +8,20 @@ class Producto {
         this.cant_pedida = cant_pedida;
         this.talle = talle;
     }
+
+    actualizarCantidad(cant_nueva){
+        if(cant_nueva > this.stock){
+            return false;
+        } else {
+            this.cant_pedida = cant_nueva;
+            return true;
+        }
+    }
+
+    comprar(){
+        this.stock -= this.cant_pedida;
+        this.cant_pedida = 0;
+    }
 }
 
 class Carrito{
@@ -23,26 +37,42 @@ class Carrito{
         }
     }
     agregarCompra(producto, cantidad=1){
+        let actualizo = false;
         if (this.carrito.length > 0){
             const encontro = this.carrito.find(element => {
                 return producto.id === element.id;
             });
             if (encontro === undefined){
-                producto.cant_pedida = cantidad;
-                this.carrito.push(producto);
-                localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+                actualizo = producto.actualizarCantidad(cantidad);
+                if(actualizo){
+                    this.carrito.push(producto);
+                    localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 this.carrito.find(element => {
-                    if (element.nombre === encontro.nombre){
-                        element.cant_pedida += cantidad;
+                    if (element.id === encontro.id){
+                        actualizo = element.actualizarCantidad(element.cant_pedida + cantidad);
                     };
                 });
-                localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+                if(actualizo){
+                    localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+                    return true;
+                } else {
+                    return false;
+                }
             }
         } else {
-            producto.cant_pedida = cantidad;
-            this.carrito.push(producto);
-            localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+            actualizo = producto.actualizarCantidad(cantidad);
+            if(actualizo){
+                this.carrito.push(producto);
+                localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     removerCompra(producto){
@@ -66,5 +96,31 @@ class Carrito{
     vaciarCarrito(){
         this.carrito = []
         localStorage.setItem('Carrito', JSON.stringify(this.carrito));
+    }
+    actualizarCompra(producto, cant_nueva){
+        let actualizo = false;
+        const encontro = this.carrito.find(element => {
+            return producto.id === element.id;
+        });
+        if(encontro !== undefined){
+            this.carrito.find(element => {
+                if (element.id === encontro.id){
+                    actualizo = element.actualizarCantidad(cant_nueva);
+                };
+            });
+            if(actualizo){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    completarCompra(){
+        this.carrito.forEach(element => {
+            element.comprar();
+        });
+        this.vaciarCarrito();
     }
 }

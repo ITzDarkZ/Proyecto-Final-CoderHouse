@@ -38,11 +38,19 @@ function agregarCarrito(event){
               }).then((seguro) => {
                 if (seguro) {
                     const index = event.target.id;
-                    carro.agregarCompra(productos[index], Number(value));
-                    swal(`Se agregaron ${value} unidades al carrito!`, {
-                        icon: "success",
-                    });
-
+                    const agrego = carro.agregarCompra(productos[index], Number(value));
+                    if(agrego){
+                        swal(`Se agregaron ${value} unidades al carrito!`, {
+                            icon: "success",
+                        });
+                    } else {
+                        swal({
+                            title: "Error!",
+                            text: "Se ingreso una cantidad mayor al stock actual...",
+                            icon: "error",
+                            button: false
+                          });
+                    }
                 } else {
                     swal("Se cancelo correctamente!");
                 }
@@ -72,30 +80,30 @@ function eliminarProducto(event){
     let producto = null;
     carro.carrito.forEach(element => {
         if (Number(id) === element.id){
-            console.log(element)
             producto = element;
         }
     });
-    console.log(producto)
     carro.removerCompra(producto);
     setTimeout("location.reload(true);", 1);
 }
 
 function completarPago(){
     let productosFormato = '';
+    let total = 0;
     carro.carrito.forEach(element => {
         productosFormato += element.nombre + '\nCantidad: ' + element.cant_pedida + '\nTotal: ' + Math.round(element.cant_pedida * element.precio) + '\n\n';
+        total += Number(element.precio * element.cant_pedida);
     });
     swal({
         title: "Estas seguro?",
-        text: `Estas seguro de comprar:\n${productosFormato}`,
+        text: `Estas seguro de comprar:\n${productosFormato}\nEl total es: ${Math.round(total)}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
       })
       .then((willDelete) => {
         if(willDelete) {
-            carro.vaciarCarrito();
+            carro.completarCompra();
             swal("Genial, gracias por confiar en nosotros! :D", {
             icon: "success",
           });
@@ -108,23 +116,49 @@ function completarPago(){
 
 function actualizarCantidad(event){
     const idproducto = 'precio-producto-' + event.target.id;
-    const cantidad = document.getElementById(event.target.id).value;
-    productos[event.target.id].cant_pedida = Number(cantidad);
-    const span = document.getElementById(idproducto);
-    const precios = span.parentNode;
-    precios.removeChild(span);
-    span.innerHTML = '$' + Math.round(productos[event.target.id].cant_pedida * productos[event.target.id].precio);
-    precios.appendChild(span);
-    carro.carrito[event.target.id] = productos[event.target.id];
-    localStorage.setItem('Carrito', JSON.stringify(carro.carrito));
-    const pagoTotal = document.getElementById('pago-total');
-    let total = 0;
-    carro.carrito.forEach(element => {
-        total += element.precio * element.cant_pedida;
-    });
-    total = Math.round(total);
-    pagoTotal.innerHTML = '$' + total;
+    const cantidad = $(`#${event.target.id}`).val();
+    const actualizar = productos[event.target.id].actualizarCantidad(Number(cantidad));
+    let compraAct = false;
+    let producto = null;
+    if(actualizar){
+        const span = $(`#${idproducto}`);
+        const precios = span.parent();
+        precios.remove(span);
+        span.text('$' + Math.round(productos[event.target.id].cant_pedida * productos[event.target.id].precio));
+        precios.append(span);
+        carro.carrito.forEach(element => {
+            if (Number(event.target.id) === element.id){
+                producto = element;
+            }
+        });
+        compraAct = carro.actualizarCompra(producto, cantidad);
+        if(compraAct){
+            localStorage.setItem('Carrito', JSON.stringify(carro.carrito));
+            const pagoTotal = $('#pago-total');
+            let total = 0;
+            carro.carrito.forEach(element => {
+                total += element.precio * element.cant_pedida;
+            });
+            total = Math.round(total);
+            pagoTotal.text('$' + total);
+        } else {
+            swal({
+                title: "Error!",
+                text: "Se produjo un error desconocido al modificar la cantidad de esta compra...",
+                icon: "error",
+                button: false
+              });
+        }
+    } else {
+        swal({
+            title: "Error!",
+            text: "La cantidad solicitada es mayor al stock disponible...",
+            icon: "error",
+            button: false
+          });
+    }
 }
+
 
 function mostrarProductoCarrito(producto) {
 	let code = `
@@ -149,7 +183,7 @@ function mostrarProductoCarrito(producto) {
                                 </select></div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-2 col-xl-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="${producto.id}" class="form-control quantity-input" onkeypress="presionarTeclaCantidad(event)" onchange="actualizarCantidad(event)" value="${producto.cant_pedida}" min="1">
+                        <div class="col-6 col-md-2 col-xl-2 quantity"><label class="d-none d-md-block" for="quantity">Cantidad</label><input type="number" id="${producto.id}" class="form-control quantity-input" onkeypress="presionarTeclaCantidad(event)" onchange="actualizarCantidad(event)" value="${producto.cant_pedida}" min="1" max="${producto.stock}">
                         <button id="eliminar-producto-${producto.id}" class="btn btn-primary eliminar" type="button" onclick="eliminarProducto(event)">Eliminar</button></div>
                         <div class="col-6 col-md-2 price"><span id="precio-producto-${producto.id}">$${Math.round(producto.precio * producto.cant_pedida)}</span></div>
                     </div>

@@ -12,33 +12,35 @@ TODO
 const carro = new Carrito();
 const productos = cargarProductos();
 
-window.onload = function(){
-   const carritohtml = document.getElementById('carrito');
-   if(carritohtml !== null){
-      carritohtml.removeChild(document.getElementById('carrito_compras'));
-      carritohtml.removeChild(document.getElementById('carrito_vacio'));
-      const summary = document.getElementById('summary');
-      carritohtml.removeChild(summary);
-      if(carro.carrito.length > 0){
-         const titulo = document.createElement('div');
-         titulo.id = 'carrito_compras';
-         titulo.className = 'content';
-         titulo.innerHTML = tituloHTML();
-         carritohtml.appendChild(titulo);
-         const padre = document.getElementById('items');
-         carro.carrito.forEach(element => {
-            let plantilla = mostrarProductoCarrito(element);
-            padre.innerHTML += plantilla;
-         });
-         titulo.appendChild(padre);
-         summary.innerHTML = actualizarSummary(carro.carrito);
-         carritohtml.appendChild(summary)
-      } else {
-         tituloVacio = document.createElement('h1');
-         tituloVacio.id = "carrito_vacio";
-         tituloVacio.innerHTML = 'TU CARRITO DE COMPRAS ESTÁ VACIÓ VE A LA TIENDA A COMPRAR ALGO!';
-         carritohtml.appendChild(tituloVacio);
-      } 
+$(document).ready(
+   function(){
+      const carritohtml = document.getElementById('carrito');
+      if(carritohtml !== null){
+         carritohtml.removeChild(document.getElementById('carrito_compras'));
+         carritohtml.removeChild(document.getElementById('carrito_vacio'));
+         const summary = document.getElementById('summary');
+         carritohtml.removeChild(summary);
+         if(carro.carrito.length > 0){
+            const titulo = document.createElement('div');
+            titulo.id = 'carrito_compras';
+            titulo.className = 'content';
+            titulo.innerHTML = tituloHTML();
+            carritohtml.appendChild(titulo);
+            const padre = document.getElementById('items');
+            carro.carrito.forEach(element => {
+               let plantilla = mostrarProductoCarrito(element);
+               padre.innerHTML += plantilla;
+            });
+            titulo.appendChild(padre);
+            summary.innerHTML = actualizarSummary(carro.carrito);
+            carritohtml.appendChild(summary)
+         } else {
+            tituloVacio = document.createElement('h1');
+            tituloVacio.id = "carrito_vacio";
+            tituloVacio.innerHTML = 'TU CARRITO DE COMPRAS ESTÁ VACIÓ VE A LA TIENDA A COMPRAR ALGO!';
+            carritohtml.appendChild(tituloVacio);
+         }
+      }
    }
-}
+);
 

@@ -262,3 +262,29 @@ body {
   max-height: 70px;
 }
 
+.actions a {
+  width: 300px;
+}
+
+.productos {
+  max-width: 950px;
+  padding: 40px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.product-inner {
+  background: black;
+  color: white;
+}
+
+.product-title {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.price {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
