@@ -22,6 +22,10 @@ class Producto {
         this.stock -= this.cant_pedida;
         this.cant_pedida = 0;
     }
+
+    cambiarTalle(talle){
+        this.talle = talle;
+    }
 }
 
 class Carrito{
@@ -122,5 +126,13 @@ class Carrito{
             element.comprar();
         });
         this.vaciarCarrito();
+    }
+    actualizarTalle(producto, talle){
+        const encontro = this.carrito.find(element => {
+            return producto.id === element.id;
+        });
+        if(encontro !== undefined){
+            encontro.cambiarTalle(talle);
+        }
     }
 }

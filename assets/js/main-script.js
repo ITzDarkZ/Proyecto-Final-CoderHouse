@@ -14,6 +14,7 @@ const productos = cargarProductos();
 
 $(document).ready(
    function(){
+      const tiendahtml = document.getElementById('main-productos');
       const carritohtml = document.getElementById('carrito');
       if(carritohtml !== null){
          carritohtml.removeChild(document.getElementById('carrito_compras'));
@@ -40,6 +41,15 @@ $(document).ready(
             tituloVacio.innerHTML = 'TU CARRITO DE COMPRAS ESTÁ VACIÓ VE A LA TIENDA A COMPRAR ALGO!';
             carritohtml.appendChild(tituloVacio);
          }
+      } else if (tiendahtml !== null) {
+         let remover = $(".col-md-4");
+         for(let i = 0; i < remover.length; i++){
+            tiendahtml.removeChild(remover[i]);
+         }
+         productos.forEach(element => {
+            let plantilla = mostrarTienda(element);
+            tiendahtml.innerHTML += plantilla;
+         });
       }
    }
 );

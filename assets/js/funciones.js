@@ -159,6 +159,18 @@ function actualizarCantidad(event){
     }
 }
 
+function setTalle(event){
+    const idproducto = event.target.id.replace('talle-', '');
+    const selected = event.target.selectedOptions[0].innerHTML;
+    let producto
+    carro.carrito.forEach(element => {
+        if (Number(idproducto) === element.id){
+            producto = element
+        }
+    });
+    carro.actualizarTalle(producto, selected);
+    localStorage.setItem('Carrito', JSON.stringify(carro.carrito));
+}
 
 function mostrarProductoCarrito(producto) {
 	let code = `
@@ -172,7 +184,7 @@ function mostrarProductoCarrito(producto) {
                         <div class="product-specs">
                             <div class="precio"><span>Precio unidad:&nbsp;</span><span class="value">$${Math.round(producto.precio)}</span></div>
                             <div class="talle"><span>Talle:&nbsp;</span>
-                                <select class='custom-select'>
+                                <select id="talle-${producto.id}" class='custom-select' onchange="setTalle(event)">
                                     <optgroup label="Talles">
                                     <option value="11" selected>XS</option>
                                     <option value="12">S</option>
@@ -227,6 +239,26 @@ function cargarProductos(){
         return new Producto(value.id, value.nombre, value.precio, value.stock, value.cant_pedida, value.imagen, value.talle);
     });
     return producto
+}
+
+function mostrarTienda(producto){
+    let code = `
+                        <div class="col-md-4">
+                            <div class="product-inner">
+                                <div class="product-wrap" data-lightbox="photos">
+                                    <img src="assets/img/${producto.imagen}"/>
+                                    <div class="actions">
+                                        <a id="${producto.id}" class="add-to-cart" href="#" onclick="agregarCarrito(event)"></a>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">${producto.nombre}</h3>
+                                    <span class="price">${producto.precio}</span>
+                                </div>
+                            </div>
+                        </div>
+                `;
+    return code;
 }
 
 const PRODUCTOS_DATA = `[  
