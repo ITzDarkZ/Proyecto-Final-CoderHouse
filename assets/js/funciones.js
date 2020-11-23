@@ -246,7 +246,7 @@ function mostrarTienda(producto){
                         <div class="col-md-4">
                             <div class="product-inner">
                                 <div class="product-wrap" data-lightbox="photos">
-                                    <img src="assets/img/${producto.imagen}"/>
+                                    <a href="assets/img/${producto.imagen}" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/${producto.imagen}"/></a>
                                     <div class="actions">
                                         <a id="${producto.id}" class="add-to-cart" href="#" onclick="agregarCarrito(event)"></a>
                                     </div>
