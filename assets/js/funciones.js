@@ -117,36 +117,52 @@ function completarPago(){
 }
 
 function actualizarCantidad(event){
-    const idproducto = 'precio-producto-' + event.target.id;
+    var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+    let mostrar = true;
     const cantidad = $(`#${event.target.id}`).val();
-    const actualizar = productos[event.target.id].actualizarCantidad(Number(cantidad));
-    let compraAct = false;
-    let producto = null;
-    if(actualizar){
-        const span = $(`#${idproducto}`);
-        const precios = span.parent();
-        precios.remove(span);
-        span.text('$' + Math.round(productos[event.target.id].cant_pedida * productos[event.target.id].precio));
-        precios.append(span);
-        carro.carrito.forEach(element => {
-            if (Number(event.target.id) === element.id){
-                producto = element;
-            }
-        });
-        compraAct = carro.actualizarCompra(producto, cantidad);
-        if(compraAct){
-            localStorage.setItem('Carrito', JSON.stringify(carro.carrito));
-            const pagoTotal = $('#pago-total');
-            let total = 0;
+    for(letra of cantidad){
+        if (letra.match(format)){
+            mostrar = false;
+        }
+    }
+    if(mostrar){
+        const idproducto = 'precio-producto-' + event.target.id;
+        const actualizar = productos[event.target.id].actualizarCantidad(Number(cantidad));
+        let compraAct = false;
+        let producto = null;
+        if(actualizar){
+            const span = $(`#${idproducto}`);
+            const precios = span.parent();
+            precios.remove(span);
+            span.text('$' + Math.round(productos[event.target.id].cant_pedida * productos[event.target.id].precio));
+            precios.append(span);
             carro.carrito.forEach(element => {
-                total += element.precio * element.cant_pedida;
+                if (Number(event.target.id) === element.id){
+                    producto = element;
+                }
             });
-            total = Math.round(total);
-            pagoTotal.text('$' + total);
+            compraAct = carro.actualizarCompra(producto, cantidad);
+            if(compraAct){
+                localStorage.setItem('Carrito', JSON.stringify(carro.carrito));
+                const pagoTotal = $('#pago-total');
+                let total = 0;
+                carro.carrito.forEach(element => {
+                    total += element.precio * element.cant_pedida;
+                });
+                total = Math.round(total);
+                pagoTotal.text('$' + total);
+            } else {
+                swal({
+                    title: "Error!",
+                    text: "Se produjo un error desconocido al modificar la cantidad de esta compra...",
+                    icon: "error",
+                    button: false
+                  });
+            }
         } else {
             swal({
                 title: "Error!",
-                text: "Se produjo un error desconocido al modificar la cantidad de esta compra...",
+                text: "La cantidad solicitada es mayor al stock disponible...",
                 icon: "error",
                 button: false
               });
@@ -154,11 +170,12 @@ function actualizarCantidad(event){
     } else {
         swal({
             title: "Error!",
-            text: "La cantidad solicitada es mayor al stock disponible...",
+            text: "Se ingreso una cantidad invalida...",
             icon: "error",
             button: false
           });
     }
+    
 }
 
 function setTalle(event){

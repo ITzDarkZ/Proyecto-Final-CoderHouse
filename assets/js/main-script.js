@@ -33,7 +33,7 @@ $.ajax({
                } else {
                   tituloVacio = document.createElement('h1');
                   tituloVacio.id = "carrito_vacio";
-                  tituloVacio.innerHTML = 'TU CARRITO DE COMPRAS ESTÁ VACIÓ VE A LA TIENDA A COMPRAR ALGO!';
+                  tituloVacio.innerHTML = 'TU CARRITO DE COMPRAS ESTÁ VACÍO VE A LA TIENDA A COMPRAR ALGO!';
                   carritohtml.appendChild(tituloVacio);
                }
             } else if (tiendahtml !== null) {
