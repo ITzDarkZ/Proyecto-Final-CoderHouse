@@ -1,0 +1,110 @@
+[  
+    {
+        "id": 0,
+        "nombre": "Remera Adidas Original Vocal Logo",
+        "precio": 3499.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "adidas1.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 1,
+        "nombre": "Remera Nike Sportswear",
+        "precio": 2499.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "nike1.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 2,
+        "nombre": "Remera Adidas Originals Trefoil",
+        "precio": 3399.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "adidas2.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 3,
+        "nombre": "Pantalón Adidas Originals Cuft",
+        "precio": 4999.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "pant_adidas1.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 4,
+        "nombre": "Pantalon Nike Air",
+        "precio": 6299.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "pant_nike1.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 5,
+        "nombre": "Pantalón Nike Sportswear",
+        "precio": 5199.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "pant_nike2.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 6,
+        "nombre": "Pantalón Nike Sportswear Swoosh",
+        "precio": 6999.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "pant_nike3.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 7,
+        "nombre": "Remera Adidas Originals 3 Stripes",
+        "precio": 3499.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "adidas3.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 8,
+        "nombre": "Remera Adidas Originals Tie Dye",
+        "precio": 2279.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "adidas4.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 9,
+        "nombre": "Remera Nike Air",
+        "precio": 3249.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "nike2.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 10,
+        "nombre": "Remera Nike Jordan Classics",
+        "precio": 2999.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "nike3.jpg",
+        "talle": "XS"
+    },
+    {
+        "id": 11,
+        "nombre": "Remera Nike Sportswear",
+        "precio": 4499.99,
+        "stock": 30,
+        "cant_pedida": 1,
+        "imagen": "nike4.jpg",
+        "talle": "XS"
+    }
+]

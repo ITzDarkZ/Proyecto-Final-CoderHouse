@@ -1,6 +1,5 @@
 function agregarCarrito(event){
-    swal("Ingrese cantidad de articulos:",
-    {
+    swal("Ingrese cantidad de articulos:",{
         content: {
             element: "input",
             attributes: {
@@ -38,6 +37,9 @@ function agregarCarrito(event){
               }).then((seguro) => {
                 if (seguro) {
                     const index = event.target.id;
+                    if(productos.length < 1){
+                        productos = cargarProductos();
+                    }
                     const agrego = carro.agregarCompra(productos[index], Number(value));
                     if(agrego){
                         swal(`Se agregaron ${value} unidades al carrito!`, {
@@ -233,60 +235,32 @@ function actualizarSummary(carrito){
 return code;
 }
 
-function cargarProductos(){
-    let objetoConProductos = JSON.parse(PRODUCTOS_DATA);
-    let producto = objetoConProductos.map(value => {
-        return new Producto(value.id, value.nombre, value.precio, value.stock, value.cant_pedida, value.imagen, value.talle);
-    });
-    return producto
-}
-
 function mostrarTienda(producto){
     let code = `
-                        <div class="col-md-4">
-                            <div class="product-inner">
-                                <div class="product-wrap" data-lightbox="photos">
-                                    <a href="assets/img/${producto.imagen}" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/${producto.imagen}"/></a>
-                                    <div class="actions">
-                                        <a id="${producto.id}" class="add-to-cart" href="#" onclick="agregarCarrito(event)"></a>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h3 class="product-title">${producto.nombre}</h3>
-                                    <span class="price">${producto.precio}</span>
-                                </div>
+                <div class="col-md-4">
+                    <div class="product-inner">
+                        <div class="product-wrap" data-lightbox="photos">
+                            <a href="assets/img/${producto.imagen}" data-lightbox="ropa"><img class="img-fluid d-block mx-auto image" src="assets/img/${producto.imagen}"/></a>
+                            <div class="actions">
+                                <a id="${producto.id}" class="add-to-cart" href="#" onclick="agregarCarrito(event)"></a>
                             </div>
                         </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${producto.nombre}</h3>
+                            <span class="price">$${producto.precio}</span>
+                        </div>
+                    </div>
+                </div>
                 `;
     return code;
 }
 
-const PRODUCTOS_DATA = `[  
-    {
-        "id": 0,
-        "nombre": "Remera Adidas Original Vocal Logo",
-        "precio": 3499.99,
-        "stock": 30,
-        "cant_pedida": 1,
-        "imagen": "adidas1.jpg",
-        "talle": "XS"
-    },
-    {
-        "id": 1,
-        "nombre": "Remera Nike Sportswear",
-        "precio": 2499.99,
-        "stock": 30,
-        "cant_pedida": 1,
-        "imagen": "nike1.jpg",
-        "talle": "XS"
-    },
-    {
-        "id": 2,
-        "nombre": "Remera Adidas Originals Trefoil",
-        "precio": 3399.99,
-        "stock": 30,
-        "cant_pedida": 1,
-        "imagen": "adidas2.jpg",
-        "talle": "XS"
-    }
-]`;
+
+function cargarProductos(){
+    let prods = localStorage.getItem('Productos');
+    prods = JSON.parse(prods);
+    let producto = prods.map(value => {
+        return new Producto(value.id, value.nombre, value.precio, value.stock, value.cant_pedida, value.imagen, value.talle);
+    });
+    return producto
+}
