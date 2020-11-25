@@ -50,6 +50,6 @@ $.ajax({
       );
    },
    error: function(){
-       alert("json not found");
+       alert("No se encontro el archivo de productos!");
    }
 });
