@@ -178,6 +178,10 @@ function actualizarCantidad(event){
     
 }
 
+function contacto(){
+    setTimeout("location.reload(true);", 0);
+}
+
 function setTalle(event){
     const idproducto = event.target.id.replace('talle-', '');
     const selected = event.target.selectedOptions[0].innerHTML;
@@ -249,7 +253,7 @@ function actualizarSummary(carrito){
                     </div>
                 </div>
                `;
-return code;
+    return code;
 }
 
 function mostrarTienda(producto){
@@ -272,7 +276,6 @@ function mostrarTienda(producto){
     return code;
 }
 
-
 function cargarProductos(){
     let prods = localStorage.getItem('Productos');
     prods = JSON.parse(prods);
@@ -281,3 +284,18 @@ function cargarProductos(){
     });
     return producto
 }
+
+/* Funcion para utilizar firebase sin ajax
+function cargarProductosFireBase(){
+    const prods = [];
+    const dbref = firebase.database().ref('/');
+    dbref.once('value').then(snapshot => {
+        snapshot.forEach(element => {
+            let temp = element.val();
+            let producto = new Producto(temp.id, temp.nombre, temp.precio, temp.stock, temp.imagen, temp.cant_pedida, temp.talle);
+            prods.push(producto)
+        })
+    });
+    return prods;
+}
+*/
